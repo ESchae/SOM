@@ -1,8 +1,8 @@
-## SOM
+# SOM
 
 A visualization of the algorithm of self-organizing maps.
 
-# Usage
+## Usage
 
 Clone or download the repository.
 From the command line navigate to the folder an execute
