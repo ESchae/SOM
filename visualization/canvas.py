@@ -68,7 +68,6 @@ class MapGrid(SomCanvas):
         distance_range = max_distance - min_distance
         for i in range(shape[0]):
             for j in range(shape[1]):
-                # TODO
                 x = (i + 0.5) * (self.width / shape[1])
                 y = (j + 0.5) * (self.height / shape[0])
                 x_length = self.width / shape[1] / 2
