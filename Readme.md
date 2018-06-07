@@ -72,15 +72,17 @@ neurons in the feature space [1, S.3].
 Because the weight vectors represent the position of the neurons in the feature space,
 they have the same dimensionality as the input data.
 Note, that although normally the feature space is high-dimensional,
-for visualization purposes an only two-dimensional feature space was chosen here.
+for visualization purposes only a two-dimensional feature space was chosen here.
+In this implementation, the weight vectors are initialized with random values, 
+but other strategies for initialization exist as well [1, S.4].
 
 The representation of the neurons in the feature space can be seen on the right canvas
 of the visualization:
 
 ![alt text](images/right-canvas.png)
 
-Here the weight vectors have been initialized with random values, 
-but other strategies for initialization exist as well [1, S.4].
+Neurons that are neighbors in the map (left canvas) are still connected by
+black lines.
 
 Now a total number of 30 samples (purple circles) is chosen for training.
 The samples are clearly split into two clusters:
@@ -95,7 +97,7 @@ A neuron 'represents' an input sample simply means, that its weight vector
 is the closest to the input sample in the feature space.
 Similar (hence close) input samples are represented by neighboring neurons:
 
-![alt text](after-training.png)
+![alt text](images/after-training.png)
 
 Remember, that normally the feature space is high-dimensional and hence can not
 be visualized very well.
