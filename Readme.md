@@ -139,15 +139,15 @@ The neuron is called the 'best matching unit' (BMU):
 
 ![alt text](images/step-2.png)
 
-3. Find the neighbors of the BMU, determined by the neighbor radius, which is
-calculated newly in each step. See below for details on the calculation.
+3. Find the neighbors of the BMU (green), determined by the neighbor radius, which is
+calculated newly in each step. See below for details on the calculation:
 
 ![alt text](images/step-3.png)
 
 4. Update the weight vectors of the BMU and its neighbors in such a way, that 
 they move closer to the selected input sample.
 The current learning rate determines how much each of them moves towards the input sample.
-See below for details on the calculation.
+See below for details on the calculation:
 
 ![alt text](images/step-4.gif)
 
@@ -195,11 +195,24 @@ may heavily influence its output, quality and performance.
 This small command line tool here, although limited to a two-dimensional feature space,
 may be used to get a feeling on how different settings affect the training of the SOM.
 
+### Musical Applications
+
+As SOMs can be used to cluster data, they can be used to cluster audio data as well.
+See [2] for an example of a SOM being used to cluster a collection of music files
+according to their musical genre and sound characteristics.
+
+A video showing a touch-based application using the same idea 
+for an electronic music collection can be found here: https://vimeo.com/7714780. 
+
 
 ### References
 
-[1] Astudillo, César and John Oommen, B. (2014). Topology-oriented self-organizing maps: 
-A survey. Pattern Analysis and Applications. 17. 10.1007/s10044-014-0367-9.
+[1] Astudillo C., Oommen, B. (2014) Topology-oriented self-organizing maps: 
+A survey. In: Pattern Analysis and Applications. 17. 10.1007/s10044-014-0367-9.
+
+[2] Frühwirth M., Rauber A. (2002) Self-Organizing Maps for Content-Based Music Clustering. 
+In: Tagliaferri R., Marinaro M. (eds) Neural Nets WIRN Vietri-01. 
+Perspectives in Neural Computing. Springer, London
 
 [2] http://www.shy.am/wp-content/uploads/2009/01/kohonen-self-organizing-maps-shyam-guthikonda.pdf, last visited 07.07.2018
 
