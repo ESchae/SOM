@@ -129,29 +129,28 @@ and initial neighbor radius.
 
 During training the following happens in each iteration [2, S.5-7]:
 
-![alt text](images/step-1.png)
 
 1. Pick a random input sample (yellow).
 
-![alt text](images/step-2.png)
+![alt text](images/step-1.png)
 
 2. Find the neuron, whose weight vector is closest to the selected input sample
 in the feature space. Here, the distance is calculated with the euclidean distance.
 The neuron is called the 'best matching unit' (BMU).
 
-![alt text](images/step-3.png)
+![alt text](images/step-2.png)
 
 3. Find the neighbors of the BMU, determined by the neighbor radius, which is
 calculated newly in each step. See below for details on the calculation.
 
-![alt text](images/step-4.png)
+![alt text](images/step-3.png)
 
 4. Update the weight vectors of the BMU and its neighbors in such a way, that 
 they move closer to the selected input sample.
 The current learning rate determines how much each of them moves towards the input sample.
 See below for details on the calculation.
 
-![alt text](images/step-5.png)
+![alt text](images/step-4.png)
 
 5. Repeat until the iteration limit is reached.
 
