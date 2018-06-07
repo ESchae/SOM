@@ -82,7 +82,7 @@ of the visualization:
 ![alt text](images/right-canvas.png)
 
 Neurons that are neighbors in the map (left canvas) are still connected by
-black lines.
+black lines in the feature space (right canvas).
 
 Now a total number of 30 samples (purple circles) is chosen for training.
 The samples are clearly split into two clusters:
@@ -93,32 +93,31 @@ During training, the weight vectors change in such a way, that the
 distribution and topology of the input data is represented [2, S.3].
 After training the neurons (via their weight vectors) represent 
 the samples from the input data. 
-A neuron 'represents' an input sample simply means, that its weight vector
-is the closest to the input sample in the feature space.
-Similar (hence close) input samples are represented by neighboring neurons:
+A neuron 'represents an input sample' simply means, that its weight vector
+is the closest to the input sample in the feature space:
 
 ![alt text](images/after-training.png)
 
+Similar (hence close) input samples are represented by neighboring neurons.
 Remember, that normally the feature space is high-dimensional and hence can not
 be visualized very well.
 As the map grid itself does not reveal the distribution of the weight vectors
 in the feature space, the result of the training is often visualized with a
-Unified Distance Matrix (U-matrix).
+so called Unified Distance Matrix (U-matrix) [1, S.8].
 In a U-matrix, the distances between neighboring neurons are visualized:
 
 ![alt text](images/u-matrix.png)
 
-Here a gray-scale was used. White cells mean, that the average distance to
-the neighbors of this neurons is low. Black cells mean, that the average distance
-to the neighbors of this neurons is high.
+Here a gray-scale was used. White cells mean, that for this neuron the average distance to
+its neighbors is low. Black cells mean, that for this neuron the average distance
+to its neighbors is high.
 In the U-matrix above you can clearly see, that there are two clusters.
 One cluster is represented by the neurons in the left part of the map,
-the other cluster is represented by the neurons in the right part of the map.
-In each cluster the neurons are relatively close to each other (white or light gray cells).
+the other cluster is represented by the neurons in the bottom right corner of the map.
+In each cluster the neurons are relatively close to each other (white to gray cells).
 The neurons whose weight vectors lie between the to clusters can be seen as black
-cells in the middle of the map.
+cells in the middle and top right corner of the map.
 They have a relatively high average distance to all their neighbors.
-
 
 
 ### Training Algorithm
@@ -130,13 +129,13 @@ and initial neighbor radius.
 During training the following happens in each iteration [2, S.5-7]:
 
 
-1. Pick a random input sample (yellow).
+1. Pick a random input sample (yellow):
 
 ![alt text](images/step-1.png)
 
 2. Find the neuron, whose weight vector is closest to the selected input sample
-in the feature space. Here, the distance is calculated with the euclidean distance.
-The neuron is called the 'best matching unit' (BMU).
+in the feature space (red). Here, the distance is calculated with the euclidean distance.
+The neuron is called the 'best matching unit' (BMU):
 
 ![alt text](images/step-2.png)
 
@@ -150,7 +149,7 @@ they move closer to the selected input sample.
 The current learning rate determines how much each of them moves towards the input sample.
 See below for details on the calculation.
 
-![alt text](images/step-4.png)
+![alt text](images/step-4.gif)
 
 5. Repeat until the iteration limit is reached.
 
