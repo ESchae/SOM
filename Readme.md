@@ -55,7 +55,7 @@ Hence the map itself is a fixed structure, that does not change [1, S.4].
 
 The map can be seen on the left canvas of the visualization:
 
-[Bild]
+![alt text](images/left-canvas.png)
 
 Each blue circle on the canvas represents one neuron in the map.
 To better visualize the map, connections from one neuron to all its direct 
