@@ -1,8 +1,8 @@
-# SOM
+# SOM Visualization
 
-A small visualization tool for the algorithm of Self-Organizing Maps (SOM).
+A small visualization tool for Self-Organizing Maps (SOM).
 
-It is meant to be used for a better understanding of what a SOM is, how it is
+This visualization is meant to be used for a better understanding of what a SOM is, how it is
 built and how it works.
 Moreover the tool can be used to gather a better understanding on how 
 selected parameters influence its outcome.
