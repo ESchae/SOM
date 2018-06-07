@@ -77,7 +77,7 @@ for visualization purposes an only two-dimensional feature space was chosen here
 The representation of the neurons in the feature space can be seen on the right canvas
 of the visualization:
 
-[Bild]
+![alt text](images/right-canvas.png)
 
 Here the weight vectors have been initialized with random values, 
 but other strategies for initialization exist as well [1, S.4].
@@ -85,7 +85,7 @@ but other strategies for initialization exist as well [1, S.4].
 Now a total number of 30 samples (purple circles) is chosen for training.
 The samples are clearly split into two clusters:
 
-[Bild]
+![alt text](images/samples.png)
 
 During training, the weight vectors change in such a way, that the
 distribution and topology of the input data is represented [2, S.3].
@@ -95,7 +95,7 @@ A neuron 'represents' an input sample simply means, that its weight vector
 is the closest to the input sample in the feature space.
 Similar (hence close) input samples are represented by neighboring neurons:
 
-[Bild]
+![alt text](after-training.png)
 
 Remember, that normally the feature space is high-dimensional and hence can not
 be visualized very well.
@@ -104,7 +104,7 @@ in the feature space, the result of the training is often visualized with a
 Unified Distance Matrix (U-matrix).
 In a U-matrix, the distances between neighboring neurons are visualized:
 
-[Bild]
+![alt text](images/u-matrix.png)
 
 Here a gray-scale was used. White cells mean, that the average distance to
 the neighbors of this neurons is low. Black cells mean, that the average distance
@@ -127,20 +127,29 @@ and initial neighbor radius.
 
 During training the following happens in each iteration [2, S.5-7]:
 
-1. Pick a random input sample.
+![alt text](images/step-1.png)
+
+1. Pick a random input sample (yellow).
+
+![alt text](images/step-2.png)
 
 2. Find the neuron, whose weight vector is closest to the selected input sample
 in the feature space. Here, the distance is calculated with the euclidean distance.
 The neuron is called the 'best matching unit' (BMU).
 
+![alt text](images/step-3.png)
+
 3. Find the neighbors of the BMU, determined by the neighbor radius, which is
 calculated newly in each step. See below for details on the calculation.
+
+![alt text](images/step-4.png)
 
 4. Update the weight vectors of the BMU and its neighbors in such a way, that 
 they move closer to the selected input sample.
 The current learning rate determines how much each of them moves towards the input sample.
 See below for details on the calculation.
 
+![alt text](images/step-5.png)
 
 5. Repeat until the iteration limit is reached.
 
