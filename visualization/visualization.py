@@ -39,8 +39,8 @@ class SomVisualization(tk.Tk):
 
         self.canvas_width = canvas_width
         self.canvas_height = canvas_height
-        self.map_grid = MapGrid(self, title='Node Grid', width=self.canvas_width, height=self.canvas_height)
-        self.feature_space_grid = FeatureSpaceGrid(self, title='lala', width=self.canvas_width, height=self.canvas_height)
+        self.map_grid = MapGrid(self, title='Map Grid', width=self.canvas_width, height=self.canvas_height)
+        self.feature_space_grid = FeatureSpaceGrid(self, title='Feature Space Grid', width=self.canvas_width, height=self.canvas_height)
         self.feature_space_grid.canvas.bind('<Button-1>', self.mouse_click_action)
 
         # placement of items in main window
@@ -90,6 +90,7 @@ class SomVisualization(tk.Tk):
         self.u_matrix_button.config(state='normal')
 
     def play(self):
+        self.step_button.config(state='disabled')
         if len(self.controller.samples) <= 1:
             tkMessageBox.showinfo('', 'Please draw at least two training '
                                       'samples by clicking somewhere on the '
@@ -106,6 +107,7 @@ class SomVisualization(tk.Tk):
         self.controller.execute_algorithm_step()
 
     def pause(self):
+        self.step_button.config(state='normal')
         self.controller.pause()
 
     def draw_u_matrix(self):

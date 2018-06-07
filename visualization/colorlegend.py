@@ -8,7 +8,7 @@ class ColorLegend(tk.Frame):
         self.color_legend = tk.LabelFrame(self, text='Color legend')
         self.color_legend.grid(columnspan=2, sticky='w')
         colors = [
-            ('blue', 'Node'),
+            ('blue', 'Neuron'),
             ('purple', 'Input data sample'),
             ('yellow', 'Current randomly selected input sample'),
             ('red', 'Best matching unit (BMU)'),

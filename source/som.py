@@ -1,5 +1,5 @@
 import numpy as np
-from node import Node
+from neuron import Neuron
 from utils import euclidean_distance, get_neighbor_indices
 
 
@@ -63,7 +63,6 @@ class SelfOrganizingMap(object):
             self.find_bmu()
             self.update_map()
             self.current_iteration_step += 1
-            # TODO: Maybe change this again?
 
     def pick_random_input_vector(self):
         """ Randomly select an input vector (= a row) from given data.
@@ -94,8 +93,8 @@ class SelfOrganizingMap(object):
         >>> som = SelfOrganizingMap(shape=(2,3), data=data)
         >>> som.initialize_map()
         >>> som.map  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
-        array([[<som.Node object ...>, <som.Node ...>, <som.Node ...],
-               [<som.Node object ...>, <som.Node ...>, <som.Node ...>]],
+        array([[<neuron.Neuron object ...>, <neuron.Neuron ...>, <neuron.Neuron ...],
+               [<neuron.Neuron object ...>, <neuron.Neuron ...>, <neuron.Neuron ...>]],
                dtype=object)
         >>> neuron = som.map[0,0]
         >>> neuron.map_index
@@ -111,7 +110,7 @@ class SelfOrganizingMap(object):
                 # fill weight vector with random floats between 0 and 1
                 weight_vector = np.random.random((data_dimensionality,))
                 map_index = (i, j)
-                self.map[i,j] = Node(weight_vector, map_index)
+                self.map[i,j] = Neuron(weight_vector, map_index)
 
     def get_neighborhood_radius(self):
         """
@@ -139,14 +138,14 @@ class SelfOrganizingMap(object):
 
         >>> data = np.random.random((3, 10))
         >>> som = SelfOrganizingMap(shape=(1, 2), data=data)
-        >>> n1 = Node(np.array([0, 0, 0]), (0, 0))
-        >>> n2 = Node(np.array([1, 1, 1]), (0, 1))
+        >>> n1 = Neuron(np.array([0, 0, 0]), (0, 0))
+        >>> n2 = Neuron(np.array([1, 1, 1]), (0, 1))
         >>> map = np.array([[n1, n2]])
         >>> som.map = map
         >>> som.input_vector = np.array([0, 0, 0])
         >>> som.find_bmu()
         >>> som.bmu  # doctest: +ELLIPSIS
-        <som.Node object at ...>
+        <neuron.Neuron object at ...>
         >>> som.bmu.map_index
         (0, 0)
 
@@ -157,11 +156,11 @@ class SelfOrganizingMap(object):
         current_bmu = None
         for i in range(self.shape[0]):
             for j in range(self.shape[1]):
-                node = self.map[i, j]
-                distance = node.calculate_distance(self.input_vector)
+                neuron = self.map[i, j]
+                distance = neuron.calculate_distance(self.input_vector)
                 if distance < current_min_distance:
                     current_min_distance = distance
-                    current_bmu = node
+                    current_bmu = neuron
         self.bmu = current_bmu
 
     def update_map(self):
@@ -182,21 +181,27 @@ class SelfOrganizingMap(object):
         current_neighborhood_radius = self.get_neighborhood_radius()
         for i in range(self.shape[0]):
             for j in range(self.shape[1]):
-                node = self.map[i, j]
-                distance = euclidean_distance(node.map_index, self.bmu.map_index)
+                neuron = self.map[i, j]
+                distance = euclidean_distance(neuron.map_index, self.bmu.map_index)
                 if distance <= current_neighborhood_radius:
-                    neighbors.append(node)
+                    neighbors.append(neuron)
         return neighbors
 
     def neighbor_influence(self, neighbor):
-        """ With increasing distance the influence ... TODO """
+        """ Get the current neighbor influence.
+
+        With increasing distance the influence becomes smaller.
+        This means, that neighbors more far away from the bmu
+        get updated by a smaller shift towards the input sample than neurons
+        that are closer to the bmu.
+        """
         current_neighborhood_radius = self.get_neighborhood_radius()
         distance = euclidean_distance(neighbor.map_index, self.bmu.map_index)
         return np.exp(- distance / (2 * current_neighborhood_radius))
 
     def get_u_matrix(self):
         """ Return the U-Matrix of the som's map. The U-Matrix displays for
-        every node the average distance between its weight vector and
+        every neuron the average distance between its weight vector and
         the weight vector of its neighbors.
 
         This method is intended to be used after training the som.

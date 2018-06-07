@@ -1,9 +1,10 @@
+import numpy as np
+
 from utils import euclidean_distance
 
 
-class Node(object):
-    """ General Neuron class, used for each node of a self-organizing map.
-    """
+class Neuron(object):
+    """ General Neuron class, used for each node of a self-organizing map. """
 
     def __init__(self, weight_vector, map_index):
         self.weight_vector = weight_vector
@@ -14,7 +15,7 @@ class Node(object):
 
         >>> weight_vector = np.array([1.0, 1.0, 1.0])
         >>> map_index = (0.0, 0.0)
-        >>> n = Node(weight_vector, map_index)
+        >>> n = Neuron(weight_vector, map_index)
         >>> input_vector = np.array([2.0, 2.0, 2.0])
         >>> n.update(input_vector, 1, 0.5)
         >>> n.weight_vector
@@ -34,7 +35,7 @@ class Node(object):
 
         >>> weight_vector = np.array([0, 0, 0])
         >>> map_index = (0, 0)
-        >>> n = Node(weight_vector, map_index)
+        >>> n = Neuron(weight_vector, map_index)
         >>> input_vector = np.array([2.0, 2.0, 1.0])
         >>> n.calculate_distance(input_vector)
         3.0
@@ -43,4 +44,3 @@ class Node(object):
         :return: distance
         """
         return euclidean_distance(input_vector, self.weight_vector)
-
